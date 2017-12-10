@@ -1,0 +1,30 @@
+html {
+  background-color: #48bbaa;
+}
+
+#createListButton {
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	color: #fff;
+	background-color: #ffb734;
+	text-align: center;
+	display: table-cell;
+	position: fixed;
+	top: 85%;
+	left: 85%;	
+	transition: all 0.25s;
+}
+
+#createListButton:hover {
+	background-color: #e5a42e;
+}
+
+#createButton {
+	color: #fff;
+	vertical-align: middle;
+	margin: auto;
+	margin-top: 5px;
+	font-size: 3em;
+	line-height: 50px;
+}

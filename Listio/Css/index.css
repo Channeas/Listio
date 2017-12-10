@@ -1,30 +1,41 @@
 html {
-  background-color: #edf0f6;
-}
-#buttonList {
-  width: 500px;
-  height: 600px;
-  margin: auto;
-  margin-top: 100px;
-  display: block;
-  background-color: #fff;
-  border-radius: 5px;
-}
-#crAndMButton {
-  display: block;
-  float: left;
-  height: 60px;
-  width: 300px;
-  margin: auto;
-  margin-top: 300px;
-  color: #fff;
-  border: 1px solid /*#189eb1*/; 
-  border-radius: 5px;
-  font-family: 'Barlow Semi Condensed', sans-serif;
-  font-size: 20px;
-  background-color: #23e3fe;
+  background-color: #48bbaa;
 }
 
-#crAndMButton:hover {
-  background-color: #1fcce4;
+/* The div of the buttons */
+#buttonList {
+  margin-top: 300px;
+}
+
+/* The class of both buttons */
+.buttons {
+  width: 500px;
+  height: 60px;
+  display: block;
+  margin: auto;
+  font-size: 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+
+/* The two different buttons' custom color*/
+
+#create {
+  background-color: #5cd3b4;
+}
+
+#create:hover {
+  background-color: #52bda2;
+}
+
+#tell {
+  background-color: #ffb734;
+}
+
+#tell:hover {
+  background-color: #e5a42e;
 }
