@@ -1,0 +1,30 @@
+html {
+  background-color: #edf0f6;
+}
+#buttonList {
+  width: 500px;
+  height: 600px;
+  margin: auto;
+  margin-top: 100px;
+  display: block;
+  background-color: #fff;
+  border-radius: 5px;
+}
+#crAndMButton {
+  display: block;
+  float: left;
+  height: 60px;
+  width: 300px;
+  margin: auto;
+  margin-top: 300px;
+  color: #fff;
+  border: 1px solid /*#189eb1*/; 
+  border-radius: 5px;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 20px;
+  background-color: #23e3fe;
+}
+
+#crAndMButton:hover {
+  background-color: #1fcce4;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../Css/index.css">
+</head>
+<body>
+  <div id="buttonList">
+    <button id="crAndMButton">&nbsp;
+      CREATE AND MANAGE LISTS
+    </button>
+  </div>
+</body>
+
+
+<!-- Link to the current firebase version. Must be the first script-->
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDnvvzQvKg1aKSM6njFaYYz8r2SB4He3-o",
+    authDomain: "listio-1.firebaseapp.com",
+    databaseURL: "https://listio-1.firebaseio.com",
+    projectId: "listio-1",
+    storageBucket: "",
+    messagingSenderId: "196279948578"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- Custom JS -->
+<script src="../Javascript/app.js"> 
+</script>
+<script src="../Javascript/index.js">
+</script>
+</html>
