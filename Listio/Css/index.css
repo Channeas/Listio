@@ -1,7 +1,3 @@
-html {
-  background-color: #48bbaa;
-}
-
 /* The div of the buttons */
 #buttonList {
   margin-top: 300px;
@@ -25,17 +21,26 @@ html {
 /* The two different buttons' custom color*/
 
 #create {
-  background-color: #5cd3b4;
+  background-color: #000000;
 }
 
 #create:hover {
-  background-color: #52bda2;
+  background-color: #191919;
 }
 
 #tell {
-  background-color: #ffb734;
+  background-color: #fff;
+  color: #000000;
 }
 
 #tell:hover {
-  background-color: #e5a42e;
+  background-color: #e5e5e5;
+}
+
+#container {
+  height: 500px;
+  width: 600px;
+  background-color: #fff;
+  text-align: center;
+  margin: auto;
 }

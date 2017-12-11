@@ -1,7 +1,3 @@
-html {
-  background-color: #48bbaa;
-}
-
 #createListButton {
 	height: 60px;
 	width: 60px;
@@ -27,4 +23,37 @@ html {
 	margin-top: 5px;
 	font-size: 3em;
 	line-height: 50px;
+}
+
+#listDisplay {
+	width: 500px;
+	text-decoration: none;
+	list-style-type: none;
+	margin: auto;
+	font-family: 'Oswald', sans-serif;
+	font-size: 32px;
+	color: #000;
+}
+
+.listDisplayClass {
+	margin-top: -5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	border-bottom: 1px solid #bdbdbb;
+	transition: all 0.5s;
+}
+
+.listDisplayClass:hover {
+	background-color: #328276;
+}
+
+.listDisplayClass:last-child {
+	border:none;
+}
+
+#container {
+	height: 600px;
+	width: 600px;
+	background-color: #fff;
+	text-align: center;
 }
