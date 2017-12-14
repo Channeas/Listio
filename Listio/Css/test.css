@@ -1,0 +1,67 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+}
+
+#menubar {
+	height: 100%; 
+	width: 300px;
+	background-color: #F46036;
+	transition: all 1s;
+}
+
+.hideMenu {
+	margin-left: -400px;
+}
+
+#menuButton {
+	position: fixed;
+	top: 30px;
+	left: 210px;
+	height: 60px;
+	width: 60px;
+	vertical-align: middle;
+}
+
+#menuButton:hover > .box1 {
+	transition: all 0.35s;
+	transform: rotate(-45deg);
+}
+
+#menuButton:hover > .box2 {
+	transition: all 0.35s;
+	transform: rotate(45deg);
+}
+
+.box {
+	height: 10px;
+	width: 50px;
+	background-color: #fff;
+	margin:auto;
+	position: relative;
+	vertical-align: middle;
+	margin-top: 25px;
+	transition: all 0.35s;
+}
+
+#box1 {
+	z-index: 1000;
+}
+
+#box2 {
+	z-index: 1001;
+	margin-top: -10px;
+}
+
+.boxColor {
+	background-color: #F46036;
+}
+
+.rotateBox {
+	transition: all 0.75s;
+	transform: rotate(90deg);
+}
