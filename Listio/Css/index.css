@@ -21,26 +21,17 @@
 /* The two different buttons' custom color*/
 
 #create {
-  background-color: #000000;
+  background-color: #F46036;
 }
 
 #create:hover {
-  background-color: #191919;
+  background-color: #c34c2b;
 }
 
 #tell {
-  background-color: #fff;
-  color: #000000;
+  background-color: #145C9E;
 }
 
 #tell:hover {
-  background-color: #e5e5e5;
-}
-
-#container {
-  height: 500px;
-  width: 600px;
-  background-color: #fff;
-  text-align: center;
-  margin: auto;
+  background-color: #10497e;
 }

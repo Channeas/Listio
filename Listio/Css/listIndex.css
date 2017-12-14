@@ -3,7 +3,7 @@
 	width: 60px;
 	border-radius: 50%;
 	color: #fff;
-	background-color: #ffb734;
+	background-color: #F46036;
 	text-align: center;
 	display: table-cell;
 	position: fixed;
@@ -13,7 +13,7 @@
 }
 
 #createListButton:hover {
-	background-color: #e5a42e;
+	background-color: #c34c2b;
 }
 
 #createButton {
@@ -30,9 +30,9 @@
 	text-decoration: none;
 	list-style-type: none;
 	margin: auto;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Barlow', sans-serif;
 	font-size: 32px;
-	color: #000;
+	color: #626262;
 }
 
 .listDisplayClass {
@@ -44,16 +44,9 @@
 }
 
 .listDisplayClass:hover {
-	background-color: #328276;
+	background-color: #f2f2f2;
 }
 
 .listDisplayClass:last-child {
 	border:none;
-}
-
-#container {
-	height: 600px;
-	width: 600px;
-	background-color: #fff;
-	text-align: center;
 }
