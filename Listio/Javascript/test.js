@@ -1,20 +1,20 @@
 var menuOut = true;
 
+// The function that hides or shows the menu
 function hideMenu() {
+	// Get the menu element
 	var menu = document.getElementById("menubar");
-	var box1 = document.getElementById("box1");
-	var box2 = document.getElementById("box2");
+
+	// Check if the menu is hidden or not
 	if(menuOut==true) {
-	menu.classList.add("hideMenu");
-	box1.classList.add("boxColor");
-	box2.classList.add("boxColor", "rotateBox");
+		// Add the class that hides the menu
+		menu.classList.add("hideMenu");
 
-	menuOut=false;
+		menuOut=false;
 	} else {
-	menu.classList.remove("hideMenu");
-	box1.classList.remove("boxColor");
-	box2.classList.remove("boxColor", "rotateBox");
+		// Remove the class that hides the menu
+		menu.classList.remove("hideMenu");
 
-	menuOut=true;
+		menuOut=true;
 	}
 }
