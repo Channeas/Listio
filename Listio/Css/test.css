@@ -7,12 +7,13 @@ html {
 body {
 	height: 100%;
 	margin: 0;
+	background-color: #f6f6f6;
 }
 
 /* The menu bar to the left */
 #menubar {
 	height: 100%; 
-	width: 300px;
+	width: 250px;
 	background-color: #F46036;
 	transition: all 1s;
 	z-index: 1000;
@@ -21,13 +22,13 @@ body {
 
 /* The class that hides the menu */
 .hideMenu {
-	margin-left: -300px;
+	margin-left: -250px;
 }
 
 /* The button that hides the menu */
 #menuButton {
 	padding-top: 30px;
-	margin-left: 210px;
+	margin-left: 150px;
 	height: 60px;
 	width: 60px;
 	vertical-align: middle;
@@ -73,8 +74,8 @@ body {
 #showMenuButton {
 	position: fixed;
 	top: 30px;
-	left: 210px;
-	background-color: #fff;
+	left: 150px;
+	background-color: #f6f6f6;
 	z-index: 10;
 	height: 60px;
 	width: 60px;
@@ -87,7 +88,7 @@ body {
 	background-color: #F46036;
 	position: relative;
 	vertical-align: middle;
-	margin:auto;
+	margin: auto;
 }
 
 /* Part 1 of the plus */
@@ -99,4 +100,72 @@ body {
 #plus2 {
 	margin-top: -10px;
 	transform: rotate(90deg);
+}
+
+#container {
+	width: 600px;
+	height: 100%;
+	position: relative;
+	display: block;
+	border-left: 1px solid #d3d3d3;
+	border-right: 1px solid #d3d3d3;
+	margin: auto;
+	background-color: #fff;
+}
+
+#placeholder {
+	width: 600px;
+	height: 20px;
+}
+
+#top {
+	width: 600px;
+	height: 60px;
+	border-top: 1px solid #d3d3d3;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+#title {
+	font-family: 'Barlow', sans-serif;
+	font-size: 3em;
+	height: 60px;
+	width: 590px;
+	vertical-align: middle;
+	margin: 0px;
+	margin-left: 5px;
+	outline: 0px solid transparent;
+}
+
+#title: focus {
+	outline: 0px solid transparent;
+}
+
+.listContentLi {
+	width: 500px;
+	word-wrap: break-word;
+	border-bottom: 1px solid #d3d3d3;
+	text-decoration: none;
+	list-style-type: none;
+	padding: 10px;
+	min-height: 30px;
+	vertical-align: middle;
+}
+
+.crossButton {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	background-color: #e7e7e7;
+	margin: auto;
+	border: 1px solid #d3d3d3;
+	border-radius: 4px;
+	vertical-align: middle;
+}
+
+.actualListText {
+	display: inline-block;
+	word-wrap: break-word;
+	margin: auto;
+	margin-top: 5px;
+	width: 500px;
 }
