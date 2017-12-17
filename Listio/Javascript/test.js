@@ -18,3 +18,8 @@ function hideMenu() {
 		menuOut=true;
 	}
 }
+
+// The function that marks a task as done
+function taskDone(id) {
+	console.log(id);
+}

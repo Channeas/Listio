@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<!-- Font -->
-	<link href="https://fonts.googleapis.com/css?family=Barlow|Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Barlow|Oswald|Roboto+Mono" rel="stylesheet">
 
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../Css/test.css">
@@ -10,7 +10,7 @@
 </head>
 <body>
   <!-- The menu bar to the left -->
-  <div id="menubar" &nbsp> 
+  <div id="menubar" > 
     <!-- The button that hides the menu -->
     <div id="menuButton" class="hideAction" onclick="hideMenu()">
       <div class="box" id="box1"> </div>
@@ -35,11 +35,22 @@
       </h1>
     </div>
 
-    <div id="listContent">
+    <div id="listContent" spellcheck="false">
       <ul>
-        <li class="listContentLi"> <div class="crossButton"> </div> <p class="actualListText"> List object number one </p></li>
-        <li class="listContentLi"> <div class="crossButton"> </div> <p class="actualListText"> List object nubmer two </p></li>
-        <li class="listContentLi"> <div class="crossButton"> </div> <p class="actualListText"> A veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery long list object </p></li>
+        <li class="listContentLi" id="listObject1"> 
+          <div class="crossButton" onclick="taskDone(this.parentNode.id)"> </div> 
+          <p class="actualListText" contenteditable="true"> List object number one </p>
+        </li>
+
+        <li class="listContentLi" id="listObject2"> 
+          <div class="crossButton" onclick="taskDone(this.parentNode.id)"> </div> 
+          <p class="actualListText" contenteditable="true"> List object nubmer two </p>
+        </li>
+        
+        <li class="listContentLi" id="listObject3"> 
+          <div class="crossButton" onclick="taskDone(this.parentNode.id)"> </div> 
+          <p class="actualListText" contenteditable="true"> A veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery long list object </p>
+        </li>
       </ul>
   </div>
 
