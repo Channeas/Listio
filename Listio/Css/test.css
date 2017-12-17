@@ -58,6 +58,39 @@ body {
 }
 
 
+#menuList {
+	list-style: none;
+	color: #fff;
+	margin-top: 750px;
+	margin-left: -10px;
+	font-size: 1.25em;
+	font-family: 'Roboto+Mono', monospace;
+}
+
+.menuListButton {
+	border: none;
+	margin-top: 10px;
+	margin-left: -15px;
+	list-style: none;
+	border: none;
+	color: #fff;
+	font-size: 1.25em;
+	font-family: 'Roboto+Mono', monospace;
+	background-color: #F46036;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Create the cross */
 #menuButton:hover > #box1 {
 	transition: all 0.35s;
@@ -101,9 +134,10 @@ body {
 	transform: rotate(90deg);
 }
 
+/* The center div where the lists are displayed */
 #container {
 	width: 600px;
-	height: 100%;
+	min-height: 100%;
 	position: relative;
 	display: block;
 	border-left: 1px solid #d3d3d3;
@@ -139,6 +173,10 @@ body {
 	outline: 0px solid transparent;
 }
 
+#listContent {
+	padding-bottom: 15px;
+}
+
 .listContentLi {
 	width: 500px;
 	border-bottom: 1px solid #d3d3d3;
@@ -171,4 +209,33 @@ body {
 
 .actualListText:focus {
 	outline: 0px solid transparent;
+}
+
+#listInput {
+	width: 500px;
+	min-height: 30px;
+	margin-left: 50px;
+	resize: none;
+	font-family: "Roboto+Mono", monospace;
+	font-size: 1.15em;
+	border: none;
+	outline: 0px solid transparent;
+}
+
+#tellMe {
+	background-color: #F46036;
+	width: 500px;
+	height: 50px;
+	margin-left: 50px;
+	color: #fff;
+	font-size: 2em;
+	font-family: "Roboto+Mono", monospace;
+	border: 0px;
+	position: fixed;
+	top:90%;
+	transition: all 0.25s;
+}
+
+#tellMe:hover {
+	background-color: #db5630;
 }
