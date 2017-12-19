@@ -19,7 +19,7 @@
 
     <div id="menuContent">
       <ul id="menuList">
-        <li onclick=""><button class="menuListButton"> Statistics </button></li>
+        <li onclick="loadList('a')"><button class="menuListButton"> Statistics </button></li>
         <li onclick="createList()"><button class="menuListButton"> Create a new list </button></li>
       </ul>
     </div>
@@ -60,7 +60,7 @@
         </li>
       </ul>
       <div>
-        <textarea id="listInput" placeholder="+ Add a task" rows="3"></textarea>
+        <textarea id="listInput" placeholder="+ Add a task" rows="3" onkeyup="newTaskListener(event)"></textarea>
       </div>
     </div>
 
