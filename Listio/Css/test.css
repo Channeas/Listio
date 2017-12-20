@@ -109,9 +109,12 @@ body {
 	color: #e5e5e5;
 	word-wrap: break-word;
 	border-bottom: 1px solid #F46036;
+	transition: 0.15s all;
 } 
-/* Hide the scroll bar of the above class somehow?*/
 
+.listOfListsLi:hover {
+	color: #fff;
+}
 
 
 

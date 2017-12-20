@@ -85,6 +85,7 @@ function taskDone(id) {
 function createList() {
 	// Empty the what is currently displayed in the listContentUl
 	listLocation.innerHTML = "";
+	document.getElementById("title").value = "";
 
 	// Create a new firestore document
 	newList = dbRef.doc();
