@@ -5,7 +5,7 @@ var newTaskInput = document.getElementById("listInput");
 var /*listID,*/ newList, currentList;
 var listID = "KVtzEYM9eJaeoiSHtuhL";
 var listObjectExample = {
-	title: "",
+	title: "none",
 	tasks: [],
 	completed: []
 }
@@ -29,20 +29,28 @@ function retrieveLists() {
 				/*console.log(currentData.tasks);
 				console.log(currentData);*/
 				// Save each docs data in a global variable object
-				window[currentDocID] = {
-					title: currentData.title, 
-					tasks: currentData.tasks
-				}
+				window[currentDocID] = currentData;
+
+				listOfLists(currentData.title, currentDocID);
 			} else {	// Else log that the doc does not exist
 				console.log("The document does not exist");
-			}
-		})
+			};
+		});
 	}).catch(function(error) { // Log and error with getting a document
 			console.log("Error getting document: " + error);
-	})
+	});
+};
+
+function listOfLists(title, ID) {
+	var listOfListsLocation = document.getElementById("listOfLists");
+
+	var crLiElement = document.createElement("li");
+	crLiElement.setAttribute("class", "listOfListsLi");
+	crLiElement.setAttribute("onclick", "loadList(" + ID + ")");
+	crLiElement.innerHTML = title;
+
+	listOfListsLocation.appendChild(crLiElement);
 }
-
-
 
 
 
@@ -78,27 +86,24 @@ function createList() {
 	// Empty the what is currently displayed in the listContentUl
 	listLocation.innerHTML = "";
 
-	console.log(listObject1241);
-
 	// Create a new firestore document
 	newList = dbRef.doc();
 	newList.set(listObjectExample);
 
 	newList.get().then(function(doc) {
-		console.log("Document data:", doc.data());
+		// Set teh currentData object to be be and empty list object
 		var currentData = doc.data();
-		console.log(currentData.tasks);
-		console.log(currentData.title);
-		//console.log
+
+		// Set the list id
 		listID = doc.id;
+
+		// Set the global variable with the name of the id of the list object
 		window[listID] = {title: currentData.title, tasks: currentData.tasks};
 		currentList = listObjectExample;
-		test();
-	})
+	});
 	// Set a global variable name dynamically as shown below
 	var myvar = "varName";
 	window[myvar] = "hello";
-	test();
 }
 
 function loadList(loadListID) {
@@ -114,9 +119,14 @@ function loadList(loadListID) {
 
 		// Set the currentList to store the current lists data
 		currentList = loadListID;
-		console.log(window[loadListID].tasks);
+		console.log(loadListID.tasks);
+
+		// Set the title
+		var titleLocation = document.getElementById("title");
+		titleLocation.value = loadListID.title;
+
 		// Append all the tasks to the listLocation
-		currentData.tasks.forEach(function(element) {
+		loadListID.tasks.forEach(function(element) {
 			// Create the li element
 			var crLiElement = document.createElement("ul");
 			crLiElement.setAttribute("class", "listContentLi");
@@ -140,20 +150,23 @@ function newTaskListener(event) {
 	// Get the keyCode
 	var code = event.keyCode;
 
-	// Check if enter is pressed
+	// Check if enter was pressed
 	if(code == 13) {
 		addTask();
 	}
 }
 
 // Add a new task to the current list
-function addTask () {
+function addTask() {
 	// Get the value of the input
 	var newTask = newTaskInput.value;
 
 	// Empty the input of the input textarea
 	newTaskInput.value = "";
 
+	console.log(newTask.length);
+
+	if(newTask.length >= 2) {
 	// Create the li element
 	var crLiElement = document.createElement("ul");
 	crLiElement.setAttribute("class", "listContentLi");
@@ -172,12 +185,38 @@ function addTask () {
 	// Push the new task to the current list objects array of tasks
 	currentList.tasks.push(newTask);
 
+	// Update the local list object
+	window[listID] = currentList;
+
 	// Update the firestore doc with the new task by sending in the currentList object
 	dbRef.doc(listID).set(currentList);
+	} else {
+		console.log("Can not add an empty task");
+	}
 }
 
+// Check if enter is pressed in the title input field
+function changeTitleListener(event) {
+	// Get the keycode
+	var code = event.keyCode;
 
-function test() {
-	console.log(varName);
-	console.log(window[listID]);
+	// Check if enter was pressed
+	if(code == 13) {
+		changeTitle();
+		console.log("Changing title");
+	}
+}
+
+// Change the title of the current list being displayed
+function changeTitle() {
+	// Get the value of the input field
+	var newTitle = document.getElementById("title").value;
+	// Save the value of the title to the currentList object
+	currentList.title = newTitle;
+
+	// Update the local list object
+	window[listID] = currentList;
+
+	// Update the firestore doc with the new title by sending in the currentList object
+	dbRef.doc(listID).set(currentList);
 }

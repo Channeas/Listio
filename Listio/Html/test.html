@@ -23,11 +23,11 @@
         <li>
           <p class="sideBarSmallMenu"> Lists </p>
           <ul id="listOfLists"> 
-            <li class="listOfListsLi"> My list </li>
+            <!--<li class="listOfListsLi"> My list </li>
             <li class="listOfListsLi"> Another li </li>
             <li class="listOfListsLi"> Yet another li </li>
             <li class="listOfListsLi"> A veeeeeeeeeeeeeeeeeeeeeeeeery long li</li>
-            <li class="listOfListsLi"> My last li</li>
+            <li class="listOfListsLi"> My last li</li>-->
           </ul>
         </li>
         <li id="KVtzEYM9eJaeoiSHtuhL" onclick="loadList(this.id)"><button class="menuListButton"> Statistics </button></li>
@@ -47,9 +47,10 @@
 
     <!-- The div where the list title is displayed -->
     <div id="top">
-      <h1 id="title" spellcheck="false" contenteditable="true" onkeyup="changeTitle(event)">
+      <!--<h1 id="title" spellcheck="false" contenteditable="true" onkeyup="changeTitleListener(event)">
         My list
-      </h1>
+      </h1>-->
+      <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()">
     </div>
 
     <div id="listContent" spellcheck="false">
@@ -70,7 +71,7 @@
         </li>
       </ul>
       <div>
-        <textarea id="listInput" placeholder="+ Add a task" rows="3" onkeyup="newTaskListener(event)"></textarea>
+        <textarea id="listInput" placeholder="+ Add a task" rows="3" onkeyup="newTaskListener(event)" onfocusout="addTask()"></textarea>
       </div>
     </div>
 

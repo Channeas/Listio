@@ -186,13 +186,14 @@ body {
 
 #title {
 	font-family: 'Roboto+Mono', monospace;
-	font-size: 3em;
-	height: 60px;
-	width: 590px;
+	font-size: 2.5em;
+	height: 58px;
+	width: 580px;
 	vertical-align: middle;
 	margin: 0px;
 	margin-left: 15px;
 	outline: 0px solid transparent;
+	border: none;
 }
 
 #title: focus {
