@@ -4,11 +4,16 @@ var listObject1241 = {title: "myTitle", tasks: ["create", "this", "software", "n
 var newTaskInput = document.getElementById("listInput");
 var /*listID,*/ newList, currentList;
 var listID = "KVtzEYM9eJaeoiSHtuhL";
+var listObjectExample = {
+	title: "",
+	tasks: [],
+	completed: []
+}
 
 // The reference point in the database. Note that when creating user specific databases it will be required to do this in the firebase.onAuthStateChanged
 dbRef = firestore.collection("users").doc("test").collection("lists");
 
-//window.onload = retrieveLists();
+window.onload = retrieveLists();
 
 // Get all the lists from the database
 function retrieveLists() {
@@ -19,8 +24,15 @@ function retrieveLists() {
 			// Check if the doc exists
 			if(doc.exists) {
 				var currentData = doc.data();
-				console.log(currentData.tasks);
-				console.log(currentData);
+				var currentDocID = doc.id;
+				console.log(currentDocID);
+				/*console.log(currentData.tasks);
+				console.log(currentData);*/
+				// Save each docs data in a global variable object
+				window[currentDocID] = {
+					title: currentData.title, 
+					tasks: currentData.tasks
+				}
 			} else {	// Else log that the doc does not exist
 				console.log("The document does not exist");
 			}
@@ -69,8 +81,8 @@ function createList() {
 	console.log(listObject1241);
 
 	// Create a new firestore document
-	newList = dbRef.doc("KVtzEYM9eJaeoiSHtuhL");
-	//newList.set(listObject1241);
+	newList = dbRef.doc();
+	newList.set(listObjectExample);
 
 	newList.get().then(function(doc) {
 		console.log("Document data:", doc.data());
@@ -80,6 +92,7 @@ function createList() {
 		//console.log
 		listID = doc.id;
 		window[listID] = {title: currentData.title, tasks: currentData.tasks};
+		currentList = listObjectExample;
 		test();
 	})
 	// Set a global variable name dynamically as shown below
@@ -88,18 +101,20 @@ function createList() {
 	test();
 }
 
-function loadList(/*listID*/) {
+function loadList(loadListID) {
 	// Empty the what is currently displayed in the listContentUl
 	listLocation.innerHTML = "";
 
+	console.log(loadListID);
 	// Get the current lists task and title from the firestore doc
-	dbRef.doc(listID).get().then(function(doc) {
+	//dbRef.doc(listID).get().then(function(doc) 
+	if("1"=="1"){
 		// Save the current data in the currentData var
-		var currentData = doc.data();
+		var currentData = window[loadListID];
 
 		// Set the currentList to store the current lists data
-		currentList = doc.data();
-		console.log(currentData.tasks);
+		currentList = loadListID;
+		console.log(window[loadListID].tasks);
 		// Append all the tasks to the listLocation
 		currentData.tasks.forEach(function(element) {
 			// Create the li element
@@ -117,7 +132,7 @@ function loadList(/*listID*/) {
 			listLocation.appendChild(crLiElement);
 			crLiElement.appendChild(crPElement);
 		})
-	})
+	}
 }
 
 // Check if enter is pressed in the textarea for new tasks

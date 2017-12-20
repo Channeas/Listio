@@ -19,8 +19,18 @@
 
     <div id="menuContent">
       <ul id="menuList">
-        <li onclick="loadList('a')"><button class="menuListButton"> Statistics </button></li>
-        <li onclick="createList()"><button class="menuListButton"> Create a new list </button></li>
+        <li onclick="createList()"><button class="menuListButton"> New list </button></li>
+        <li>
+          <p class="sideBarSmallMenu"> Lists </p>
+          <ul id="listOfLists"> 
+            <li class="listOfListsLi"> My list </li>
+            <li class="listOfListsLi"> Another li </li>
+            <li class="listOfListsLi"> Yet another li </li>
+            <li class="listOfListsLi"> A veeeeeeeeeeeeeeeeeeeeeeeeery long li</li>
+            <li class="listOfListsLi"> My last li</li>
+          </ul>
+        </li>
+        <li id="KVtzEYM9eJaeoiSHtuhL" onclick="loadList(this.id)"><button class="menuListButton"> Statistics </button></li>
       </ul>
     </div>
   </div>
@@ -37,7 +47,7 @@
 
     <!-- The div where the list title is displayed -->
     <div id="top">
-      <h1 id="title" spellcheck="false" contenteditable="true">
+      <h1 id="title" spellcheck="false" contenteditable="true" onkeyup="changeTitle(event)">
         My list
       </h1>
     </div>

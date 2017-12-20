@@ -58,19 +58,31 @@ body {
 }
 
 
+#menuContent {
+	overflow: hidden;
+	width: 200px;
+}
+
+
 #menuList {
 	list-style: none;
 	color: #fff;
-	margin-top: 750px;
-	margin-left: -10px;
+	margin-top: 500px;
+	margin-left: 10px;
 	font-size: 1.25em;
+	padding: 0px;
 	font-family: 'Roboto+Mono', monospace;
+}
+
+.sideBarSmallMenu {
+	font-size: 1.25em;
+	margin-left: ;
 }
 
 .menuListButton {
 	border: none;
 	margin-top: 10px;
-	margin-left: -15px;
+	margin-left: -5px;
 	list-style: none;
 	border: none;
 	color: #fff;
@@ -80,11 +92,25 @@ body {
 	text-align: left;
 }
 
+#listOfLists {
+	height: 200px;
+	width: 200px;
+	padding: 0px;
+	margin-top: -25px;
+	background-color: #db5630;
+	padding-right: 10px;
+	overflow-y: scroll;
+}
 
-
-
-
-
+.listOfListsLi {
+	margin-left: 5px;
+	padding-top: 10px;
+	list-style-type: none;	
+	color: #e5e5e5;
+	word-wrap: break-word;
+	border-bottom: 1px solid #F46036;
+} 
+/* Hide the scroll bar of the above class somehow?*/
 
 
 
