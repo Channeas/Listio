@@ -40,6 +40,8 @@
       <div class="plus" id="plus2"> </div>
     </div>
     
+
+
   <div id="container">
     <div id="placeholder">
 
@@ -50,28 +52,27 @@
       <!--<h1 id="title" spellcheck="false" contenteditable="true" onkeyup="changeTitleListener(event)">
         My list
       </h1>-->
-      <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()">
+      <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()" hidden>
     </div>
 
     <div id="listContent" spellcheck="false">
       <ul id="listContentUl">
-        <li class="listContentLi" id="listObject1"> 
-          <!--<div class="crossButton" onclick="taskDone(this.parentNode.id)"> </div> -->
+        <!--
+        <li class="listContentLi" id="listObject1">
           <p class="actualListText" contenteditable="true"> List object number one </p>
         </li>
 
-        <li class="listContentLi" id="listObject2"> 
-          <!--<div class="crossButton" onclick="taskDone(this.parentNode.id)"> </div> -->
+        <li class="listContentLi" id="listObject2">
           <p class="actualListText" contenteditable="true"> List object nubmer two </p>
         </li>
         
         <li class="listContentLi" id="listObject3"> 
-          <!--<div class="crossButton" onclick="taskDone(this.parentNode.id)"> </div> -->
           <p class="actualListText" contenteditable="true"> A veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery long list object </p>
-        </li>
+        </li>-->
+        <ul id="noListSelected"><p>Please select a list to be displayed</p></ul>
       </ul>
       <div>
-        <textarea id="listInput" placeholder="+ Add a task" rows="3" onkeyup="newTaskListener(event)" onfocusout="addTask()"></textarea>
+        <textarea id="listInput" placeholder="+ Add a task" rows="3" onkeyup="newTaskListener(event)" onfocusout="addTask()" hidden></textarea>
       </div>
     </div>
 

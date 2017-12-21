@@ -25,6 +25,7 @@ function retrieveLists() {
 			if(doc.exists) {
 				var currentData = doc.data();
 				var currentDocID = doc.id;
+				currentData.id = currentDocID;
 				console.log(currentDocID);
 				/*console.log(currentData.tasks);
 				console.log(currentData);*/
@@ -46,6 +47,7 @@ function listOfLists(title, ID) {
 
 	var crLiElement = document.createElement("li");
 	crLiElement.setAttribute("class", "listOfListsLi");
+	crLiElement.setAttribute("id", ID + "_list");
 	crLiElement.setAttribute("onclick", "loadList(" + ID + ")");
 	crLiElement.innerHTML = title;
 
@@ -120,7 +122,13 @@ function loadList(loadListID) {
 
 		// Set the currentList to store the current lists data
 		currentList = loadListID;
-		console.log(loadListID.tasks);
+
+		listID = loadListID;
+
+		// Fix what is hidden on the page
+		unHide()
+
+		console.log(loadListID);
 
 		// Set the title
 		var titleLocation = document.getElementById("title");
@@ -219,5 +227,15 @@ function changeTitle() {
 	window[listID] = currentList;
 
 	// Update the firestore doc with the new title by sending in the currentList object
-	dbRef.doc(listID).set(currentList);
+	dbRef.doc(currentList.id).set(currentList);
+
+	// Update the list of lists to display the right title
+	document.getElementById(currentList.id + "list").innerHTML = newTitle;
+}
+
+// Removes the hidden attribute from the title and new task input as well as hides the no list selected message
+function unHide() {
+	var titleInput = document.getElementById("title");
+	titleInput.removeAttribute("hidden");
+	newTaskInput.removeAttribute("hidden");
 }
