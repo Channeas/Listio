@@ -1,0 +1,96 @@
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+#tellMeOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1000;
+}
+
+#overlayContent {
+	position: relative;
+	width: 600px;
+	height: 400px;
+	margin: auto;
+	margin-top: 500px;
+	z-index: 1002;
+	text-align: center;
+}
+
+#overlayDone {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1001;
+}
+
+#taskDisplayOuterDiv {
+	height: 300px;
+	width: 800px;
+	margin: auto;
+	margin-top: 15%;
+	text-align: center;
+	font-family: 'Roboto+Mono', monospace;
+}
+
+#taskDisplay {
+	font-size: 3em;
+	user-select: none; 
+}
+
+#taskAction {
+	max-height: 0px;
+	max-width: 0px;
+	margin: auto;
+	transition: max-height 1s, max-width 1s;
+	z-index: 10000;
+	height: 100%;
+	width: 100%;
+}
+
+.taskAction2 {
+	background-color: #4de34c;
+	max-height: 100% !important;
+	max-width: 100% !important;
+}
+
+.taskAction3 {
+	background-color: #ea0001;
+	max-height: 100% !important;
+	max-width: 100% !important;
+}
+
+#placeHolder {
+	height: 100px;
+	width: 100px;
+}
+
+.contentButton {
+	font-family: 'Roboto+Mono', monospace;
+	border: none;
+	color: #fff;
+	height: 80px;
+	width: 600px;
+	margin-top: 60px;
+	font-size: 2.5em;
+}
+
+#skipTask {
+	background-color: #ea0001;
+}
+
+#quit {
+	background-color: #f46036;
+}

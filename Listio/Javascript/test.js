@@ -10,6 +10,8 @@ var listObjectExample = {
 	completed: []
 }
 
+var skip = 0;
+
 // The reference point in the database. Note that when creating user specific databases it will be required to do this in the firebase.onAuthStateChanged
 dbRef = firestore.collection("users").doc("test").collection("lists");
 
@@ -89,6 +91,9 @@ function createList() {
 	listLocation.innerHTML = "";
 	document.getElementById("title").value = "";
 
+	// Fix what is hidden on the page
+	unHide()
+
 	// Create a new firestore document
 	newList = dbRef.doc();
 	newList.set(listObjectExample);
@@ -97,17 +102,28 @@ function createList() {
 		// Set teh currentData object to be be and empty list object
 		var currentData = doc.data();
 
+		// Save the empty arrays and title value as well as the new id in the currentList var
+		currentList = currentData;
+		currentList.id = doc.id;
+
+		// Add the new list to the listOfLists
+		listOfLists("none", doc.id);
+
 		// Set the list id
 		listID = doc.id;
 
 		// Set the global variable with the name of the id of the list object
 		window[listID] = {title: currentData.title, tasks: currentData.tasks};
-		currentList = listObjectExample;
 	});
 	// Set a global variable name dynamically as shown below
 	var myvar = "varName";
 	window[myvar] = "hello";
 }
+
+
+
+
+
 
 function loadList(loadListID) {
 	// Empty the what is currently displayed in the listContentUl
@@ -198,7 +214,7 @@ function addTask() {
 	window[listID] = currentList;
 
 	// Update the firestore doc with the new task by sending in the currentList object
-	dbRef.doc(listID).set(currentList);
+	dbRef.doc(currentList.id).set(currentList);
 	} else {
 		console.log("Can not add an empty task");
 	}
@@ -230,12 +246,37 @@ function changeTitle() {
 	dbRef.doc(currentList.id).set(currentList);
 
 	// Update the list of lists to display the right title
-	document.getElementById(currentList.id + "list").innerHTML = newTitle;
+	document.getElementById(currentList.id + "_list").innerHTML = newTitle;
 }
 
 // Removes the hidden attribute from the title and new task input as well as hides the no list selected message
 function unHide() {
+	// Remove the hidden tag attribute from the title and task input
 	var titleInput = document.getElementById("title");
 	titleInput.removeAttribute("hidden");
 	newTaskInput.removeAttribute("hidden");
+
+	// Remove the hidden attribute from the tell me what to do button
+	var tellMeButton = document.getElementById("tellMeButton");
+	tellMeButton.removeAttribute("hidden");
 }
+
+// The button that unhides the tellMe overlay
+function tellMeWhatToDo() {
+	/*var overlay = document.getElementById("tellMeOverlay");
+	overlay.removeAttribute("hidden");
+	console.log("Code");*/
+
+	// Save the current list in localstorage
+	var stringList = JSON.stringify(currentList);
+	window.sessionStorage.setItem("list", stringList);
+
+	// Redirect to the taskViewer page
+	window.location.href = "test2.html";
+}
+
+function overlayTaskDone() {
+	console.log("Task complete");
+	console.log("Completed task:" + currentList.tasks[skip]);
+	skip +=1;
+} 

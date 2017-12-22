@@ -43,8 +43,13 @@
 
 
   <div id="container">
-    <div id="placeholder">
+    <div id="tellMeOverlay" hidden>
+      <div id="overlayContent"> 
 
+      </div>
+      <div id="overlayDone" onclick="overlayTaskDone()">
+
+      </div>
     </div>
 
     <!-- The div where the list title is displayed -->
@@ -52,7 +57,7 @@
       <!--<h1 id="title" spellcheck="false" contenteditable="true" onkeyup="changeTitleListener(event)">
         My list
       </h1>-->
-      <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()" hidden>
+      <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()" hidden placeholder="Write your title here">
     </div>
 
     <div id="listContent" spellcheck="false">
@@ -76,7 +81,9 @@
       </div>
     </div>
 
-<button id="tellMe"> Tell me what to do </button>
+<button id="tellMeButton" onclick="tellMeWhatToDo()" hidden> Tell me what to do </button>
+
+</div>
 
 </body>
 

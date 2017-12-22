@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Barlow|Oswald|Roboto+Mono" rel="stylesheet">
+
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../Css/test2.css">
+  <!--<link rel="stylesheet" type="text/css" href="../Css/app.css">-->
+</head>
+<body>
+    <div id="taskAction">
+  		<div id="placeHolder">
+  			<div id="displayFinnishedTask">
+
+  			</div>
+    	</div>
+    </div>
+    
+
+    <div id="tellMeOverlay">
+      <div id="overlayContent"> 
+      	<button id="skipTask" class="contentButton" onclick="skipTask()">
+      		Skip this task
+      	</button>
+      	<button id="quit" class="contentButton" onclick="quit()">
+      		Quit
+      	</button>
+      </div>
+      <div id="overlayDone" onclick="overlayTaskDone()">
+      	<div id="taskDisplayOuterDiv">
+      		<div id="taskDisplay">
+      			This is my text
+      		</div>
+      	</div>
+      </div>
+    </div>
+
+</body>
+
+<!-- Link to the current firebase version. Must be the first script-->
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<!-- Link to the firestore -->
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDnvvzQvKg1aKSM6njFaYYz8r2SB4He3-o",
+    authDomain: "listio-1.firebaseapp.com",
+    databaseURL: "https://listio-1.firebaseio.com",
+    projectId: "listio-1",
+    storageBucket: "listio-1.appspot.com",
+    messagingSenderId: "196279948578"
+  };
+  firebase.initializeApp(config);
+  var firestore = firebase.firestore();
+</script>
+
+<!-- Custom JS -->
+<!--<script src="../Javascript/app.js"> 
+</script>-->
+<script src="../Javascript/test2.js">
+</script>
+
+</html>
