@@ -300,3 +300,23 @@ body {
 	width: 100%;
 	z-index: 1001;
 }
+
+.myTestClass {
+	color: #000;
+	line-height: 16px;
+}
+
+.deleteIconDiv {
+	margin-left: 470px;
+	margin-top: 5px;
+	position: fixed;
+	transition: all 10s;
+}
+
+.oi[data-glyph]:before {
+	transition: all 0.25s;
+}
+
+.deleteIconDiv:hover > .oi[data-glyph]:before {
+	color: #ea0001;
+}

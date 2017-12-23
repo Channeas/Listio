@@ -3,6 +3,7 @@ var listLocation = document.getElementById("listContentUl");
 var listObject1241 = {title: "myTitle", tasks: ["create", "this", "software", "now"], completed: ["this", "task", "is", "completed"]};
 var newTaskInput = document.getElementById("listInput");
 var /*listID,*/ newList, currentList;
+var currentListIndex = 0;
 var listID = "KVtzEYM9eJaeoiSHtuhL";
 var listObjectExample = {
 	title: "none",
@@ -155,6 +156,7 @@ function loadList(loadListID) {
 			// Create the li element
 			var crLiElement = document.createElement("ul");
 			crLiElement.setAttribute("class", "listContentLi");
+			crLiElement.setAttribute("id", "liItemNumber_" + currentListIndex);
 			// crLiElement.setAttribute("id",)
 
 			// Create the <p> element
@@ -163,9 +165,23 @@ function loadList(loadListID) {
 			crPElement.setAttribute("contenteditable", "true");
 			crPElement.innerHTML = element;
 
+			// Add the delete icon div
+			var deleteIconDiv = document.createElement("div");
+			deleteIconDiv.setAttribute("class", "deleteIconDiv");
+			deleteIconDiv.setAttribute("id", currentListIndex);
+			deleteIconDiv.setAttribute("onclick", "deleteTask(this.id)");
+
+			// Add the delete icon
+			var deleteIcon = document.createElement("span");
+			deleteIcon.setAttribute("class", "oi");
+			deleteIcon.setAttribute("data-glyph", "trash");
+
 			// Append the above elements
 			listLocation.appendChild(crLiElement);
+			crLiElement.appendChild(deleteIconDiv);
+			deleteIconDiv.appendChild(deleteIcon);
 			crLiElement.appendChild(crPElement);
+			currentListIndex += 1;
 		})
 	}
 }
@@ -215,6 +231,7 @@ function addTask() {
 
 	// Update the firestore doc with the new task by sending in the currentList object
 	dbRef.doc(currentList.id).set(currentList);
+
 	} else {
 		console.log("Can not add an empty task");
 	}
@@ -280,3 +297,16 @@ function overlayTaskDone() {
 	console.log("Completed task:" + currentList.tasks[skip]);
 	skip +=1;
 } 
+
+function deleteTask(listIndex) {
+	var deletedTask = document.getElementById("liItemNumber_" + listIndex);
+	console.log(listIndex);
+	currentList.tasks.splice(listIndex, 1);
+	deletedTask.parentNode.removeChild(deletedTask);
+
+	// Update the local list object
+	window[listID] = currentList;
+
+	// Update the firestore doc with the new task by sending in the currentList object
+	dbRef.doc(currentList.id).set(currentList);
+}
