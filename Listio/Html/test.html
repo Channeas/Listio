@@ -67,7 +67,8 @@
     </div>
 
     <div id="listContent" spellcheck="false">
-      <ul id="listContentUl">
+      <p id="toDoTasks"> Tasks </p>
+      <ul id="listTasks">
         <!--
         <li class="listContentLi" id="listObject1">
           <p class="actualListText" contenteditable="true"> List object number one </p>
@@ -83,7 +84,7 @@
         <ul id="noListSelected"><p>Please select a list to be displayed</p></ul>
       </ul>
       <div>
-        <textarea id="listInput" placeholder="+ Add a task" rows="3" onkeyup="newTaskListener(event)" onfocusout="addTask()" hidden></textarea>
+        <p id="listInput" placeholder="+ Add a task" onkeyup="newTaskListener(event)" onfocusout="addTask()" hidden contenteditable="true"></p>
       </div>
     </div>
 

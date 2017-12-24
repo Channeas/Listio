@@ -252,7 +252,10 @@ body {
 	outline: 0px solid transparent;
 }
 
-
+#listInput:empty:before {
+  content: attr(placeholder);
+  color: #7e7e7e;
+ }
 
 #tellMeButton {
 	background-color: #F46036;
@@ -319,4 +322,11 @@ body {
 
 .deleteIconDiv:hover > .oi[data-glyph]:before {
 	color: #ea0001;
+}
+
+#toDoTasks {
+	font-family: "Roboto+Mono", monospace;
+    font-size: 1.75em;
+    color: #7e7e7e;
+    margin-left: 50px;
 }

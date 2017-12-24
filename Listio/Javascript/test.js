@@ -1,5 +1,5 @@
 var menuOut = true;
-var listLocation = document.getElementById("listContentUl");
+var listLocation = document.getElementById("listTasks");
 var listObject1241 = {title: "myTitle", tasks: ["create", "this", "software", "now"], completed: ["this", "task", "is", "completed"]};
 var newTaskInput = document.getElementById("listInput");
 var /*listID,*/ newList, currentList;
@@ -88,7 +88,7 @@ function taskDone(id) {
 }
 
 function createList() {
-	// Empty the what is currently displayed in the listContentUl
+	// Empty the what is currently displayed in the list
 	listLocation.innerHTML = "";
 	document.getElementById("title").value = "";
 
@@ -127,7 +127,7 @@ function createList() {
 
 
 function loadList(loadListID) {
-	// Empty the what is currently displayed in the listContentUl
+	// Empty the what is currently displayed in the list
 	listLocation.innerHTML = "";
 
 	console.log(loadListID);
@@ -200,10 +200,10 @@ function newTaskListener(event) {
 // Add a new task to the current list
 function addTask() {
 	// Get the value of the input
-	var newTask = newTaskInput.value;
+	var newTask = newTaskInput.innerHTML;
 
 	// Empty the input of the input textarea
-	newTaskInput.value = "";
+	newTaskInput.innerHTML = "";
 
 	console.log(newTask.length);
 
