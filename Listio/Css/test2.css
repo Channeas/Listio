@@ -8,7 +8,8 @@ body {
 	width: 100%;
 }
 
-#tellMeOverlay {
+/* The div of the page content */
+#pageContent {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -17,7 +18,8 @@ body {
 	z-index: 1000;
 }
 
-#overlayContent {
+/* The div of the buttons */
+#buttonDiv {
 	position: relative;
 	width: 600px;
 	height: 400px;
@@ -27,7 +29,8 @@ body {
 	text-align: center;
 }
 
-#overlayDone {
+/* The div that if clicked marks a task as done */
+#taskDone {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -36,6 +39,7 @@ body {
 	z-index: 1001;
 }
 
+/* The outer div of the taskDisplay */
 #taskDisplayOuterDiv {
 	height: 300px;
 	width: 800px;
@@ -45,11 +49,13 @@ body {
 	font-family: 'Roboto+Mono', monospace;
 }
 
+/* The div of the actual taskDisplay */
 #taskDisplay {
 	font-size: 3em;
 	user-select: none; 
 }
 
+/* The div that changes color if a task is finnished or skipped */
 #taskAction {
 	max-height: 0px;
 	max-width: 0px;
@@ -60,23 +66,27 @@ body {
 	width: 100%;
 }
 
+/* The class that is added to the taskAction div if a task is finnished */
 .taskAction2 {
 	background-color: #4de34c;
 	max-height: 100% !important;
 	max-width: 100% !important;
 }
 
+/* The class that is added to the taskAction div if a task is skipped */
 .taskAction3 {
 	background-color: #ea0001;
 	max-height: 100% !important;
 	max-width: 100% !important;
 }
 
+/* The placeholder of the taskAction div */
 #placeHolder {
 	height: 100px;
 	width: 100px;
 }
 
+/* The class of the skip and quit buttons */
 .contentButton {
 	font-family: 'Roboto+Mono', monospace;
 	border: none;
@@ -87,10 +97,12 @@ body {
 	font-size: 2.5em;
 }
 
+/* The color of the skipTask button */
 #skipTask {
 	background-color: #ea0001;
 }
 
+/* The color of the quit button */
 #quit {
 	background-color: #f46036;
 }

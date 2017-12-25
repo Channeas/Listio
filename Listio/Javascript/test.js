@@ -1,21 +1,22 @@
 var menuOut = true;
 var listLocation = document.getElementById("listTasks");
-var listObject1241 = {title: "myTitle", tasks: ["create", "this", "software", "now"], completed: ["this", "task", "is", "completed"]};
 var newTaskInput = document.getElementById("listInput");
-var /*listID,*/ newList, currentList;
+var titleInput = document.getElementById("title");
+var tellMeButton = document.getElementById("tellMeButton");
+var newList, currentList;
 var currentListIndex = 0;
 var listID = "KVtzEYM9eJaeoiSHtuhL";
 var listObjectExample = {
-	title: "none",
+	title: "",
 	tasks: [],
-	completed: []
+	completed: [],
+	id: ""
 }
-
-var skip = 0;
 
 // The reference point in the database. Note that when creating user specific databases it will be required to do this in the firebase.onAuthStateChanged
 dbRef = firestore.collection("users").doc("test").collection("lists");
 
+// The call to get all the list from the firebase database
 window.onload = retrieveLists();
 
 // Get all the lists from the database
@@ -26,16 +27,19 @@ function retrieveLists() {
 		querySnapshot.forEach(function(doc) {
 			// Check if the doc exists
 			if(doc.exists) {
+				// Save the data in the var currentData
 				var currentData = doc.data();
-				var currentDocID = doc.id;
-				currentData.id = currentDocID;
-				console.log(currentDocID);
-				/*console.log(currentData.tasks);
-				console.log(currentData);*/
+				
+				// The code below is for saving id's. Most likely unnessecary
+				//var currentDocID = doc.id;
+				//currentData.id = currentDocID;
+
 				// Save each docs data in a global variable object
 				window[currentDocID] = currentData;
 
+				// Call the function that adds each list to the list of lists
 				listOfLists(currentData.title, currentDocID);
+
 			} else {	// Else log that the doc does not exist
 				console.log("The document does not exist");
 			};
@@ -45,6 +49,7 @@ function retrieveLists() {
 	});
 };
 
+// The function for displaying lists in the menu 
 function listOfLists(title, ID) {
 	var listOfListsLocation = document.getElementById("listOfLists");
 
@@ -57,12 +62,6 @@ function listOfLists(title, ID) {
 	listOfListsLocation.appendChild(crLiElement);
 }
 
-
-
-
-
-
-
 // The function that hides or shows the menu
 function hideMenu() {
 	// Get the menu element
@@ -73,24 +72,22 @@ function hideMenu() {
 		// Add the class that hides the menu
 		menu.classList.add("hideMenu");
 
+		// Set menuOut to false
 		menuOut=false;
 	} else {
 		// Remove the class that hides the menu
 		menu.classList.remove("hideMenu");
 
+		// Set menuOut to true
 		menuOut=true;
 	}
 }
 
-// The function that marks a task as done
-function taskDone(id) {
-	console.log(id);
-}
-
+// The function for creating new lists
 function createList() {
-	// Empty the what is currently displayed in the list
+	// Empty the what is currently displayed in the list and empty the title
 	listLocation.innerHTML = "";
-	document.getElementById("title").value = "";
+	titleInput.value = "";
 
 	// Fix what is hidden on the page
 	unHide()
@@ -99,8 +96,9 @@ function createList() {
 	newList = dbRef.doc();
 	newList.set(listObjectExample);
 
+	// Create the firebase document and get the list id
 	newList.get().then(function(doc) {
-		// Set teh currentData object to be be and empty list object
+		// Set the currentData object to be be and empty list object
 		var currentData = doc.data();
 
 		// Save the empty arrays and title value as well as the new id in the currentList var
@@ -121,11 +119,6 @@ function createList() {
 	window[myvar] = "hello";
 }
 
-
-
-
-
-
 function loadList(loadListID) {
 	// Set the currentListIndex to 0. Important if this is not the first list to be loaded
 	currentListIndex = 0;
@@ -143,11 +136,13 @@ function loadList(loadListID) {
 		// Set the currentList to store the current lists data
 		currentList = loadListID;
 
+		// Set the listID to be the id of the loaded list
 		listID = loadListID;
 
 		// Fix what is hidden on the page
 		unHide()
 
+		// Log the loaded list id
 		console.log(loadListID);
 
 		// Set the title
@@ -193,6 +188,8 @@ function addTask (element) {
 	crLiElement.appendChild(deleteIconDiv);
 	deleteIconDiv.appendChild(deleteIcon);
 	crLiElement.appendChild(crPElement);
+
+	// Add 1 to the currentListIndex, which is for ordering the different list elements
 	currentListIndex += 1;
 }
 
@@ -216,6 +213,7 @@ function createTask() {
 
 	// Check so that the new task input is not empty
 	if(newTask.length > 0) {
+
 	// Call the function that adds a new task
 	addTask(newTask);
 
@@ -231,7 +229,7 @@ function createTask() {
 	// Update the firestore doc with the new task by sending in the currentList object
 	dbRef.doc(currentList.id).set(currentList);
 	
-	} else {
+	} else { // Else log that the user can not create an empty task
 		console.log("Can not add an empty task");
 	}
 }
@@ -243,6 +241,7 @@ function changeTitleListener(event) {
 
 	// Check if enter was pressed
 	if(code == 13) {
+		// Call the function for changing the title
 		changeTitle();
 		console.log("Changing title");
 	}
@@ -268,21 +267,15 @@ function changeTitle() {
 // Removes the hidden attribute from the title and new task input as well as hides the no list selected message
 function unHide() {
 	// Remove the hidden tag attribute from the title and task input
-	var titleInput = document.getElementById("title");
 	titleInput.removeAttribute("hidden");
 	newTaskInput.removeAttribute("hidden");
 
 	// Remove the hidden attribute from the tell me what to do button
-	var tellMeButton = document.getElementById("tellMeButton");
 	tellMeButton.removeAttribute("hidden");
 }
 
-// The button that unhides the tellMe overlay
+// The function that redirects to the page that shows lists
 function tellMeWhatToDo() {
-	/*var overlay = document.getElementById("tellMeOverlay");
-	overlay.removeAttribute("hidden");
-	console.log("Code");*/
-
 	// Save the current list in localstorage
 	var stringList = JSON.stringify(currentList);
 	window.sessionStorage.setItem("list", stringList);
@@ -291,12 +284,6 @@ function tellMeWhatToDo() {
 	window.location.href = "test2.html";
 }
 
-function overlayTaskDone() {
-	console.log("Task complete");
-	console.log("Completed task:" + currentList.tasks[skip]);
-	skip +=1;
-} 
-
 function deleteTask(listIndex) {
 	// Get the list of all tasks
 	var todoList = document.getElementById("listTasks").getElementsByTagName("li");
@@ -304,9 +291,6 @@ function deleteTask(listIndex) {
 	// Get the task to delete
 	var deletedTask = document.getElementById("liItemNumber_" + listIndex);
 
-
-
-	console.log(listIndex);
 	// Remove the task from the currentList object
 	currentList.tasks.splice(listIndex, 1);
 

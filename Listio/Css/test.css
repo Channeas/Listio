@@ -57,13 +57,14 @@ body {
 	margin-top: -10px;
 }
 
-
+/* The div for menu content */
 #menuContent {
 	overflow: hidden;
 	width: 200px;
 }
 
 
+/* The ul for the different menu buttons */
 #menuList {
 	list-style: none;
 	color: #fff;
@@ -74,11 +75,13 @@ body {
 	font-family: 'Roboto+Mono', monospace;
 }
 
+/* The header for the list of lists display */
 .sideBarSmallMenu {
 	font-size: 1.25em;
 	margin-left: ;
 }
 
+/* The class of the different menu buttons */
 .menuListButton {
 	border: none;
 	margin-top: 10px;
@@ -92,6 +95,7 @@ body {
 	text-align: left;
 }
 
+/* The ul for the display of the different lists */
 #listOfLists {
 	height: 200px;
 	width: 200px;
@@ -102,6 +106,7 @@ body {
 	overflow-y: scroll;
 }
 
+/* The class of every list of lists item */
 .listOfListsLi {
 	margin-left: 5px;
 	padding-top: 10px;
@@ -112,6 +117,7 @@ body {
 	transition: 0.15s all;
 } 
 
+/* The hover of every list of lists item */
 .listOfListsLi:hover {
 	color: #fff;
 }
@@ -175,11 +181,7 @@ body {
 	background-color: #fff;
 }
 
-#placeholder {
-	width: 600px;
-	height: 20px;
-}
-
+/* The div where the list is displayed */
 #top {
 	width: 600px;
 	height: 60px;
@@ -187,6 +189,7 @@ body {
 	border-bottom: 1px solid #d3d3d3;
 }
 
+/* The title display */
 #title {
 	font-family: 'Roboto+Mono', monospace;
 	font-size: 2.5em;
@@ -199,14 +202,17 @@ body {
 	border: none;
 }
 
+/* The focus of the title display */
 #title: focus {
 	outline: 0px solid transparent;
 }
 
+/* The actual list content */
 #listContent {
 	padding-bottom: 15px;
 }
 
+/* The class of every task list item */
 .listContentLi {
 	width: 500px;
 	border-bottom: 1px solid #d3d3d3;
@@ -217,6 +223,7 @@ body {
 	vertical-align: middle;
 }
 
+/* The button for opening the menu */
 .crossButton {
 	width: 20px;
 	height: 20px;
@@ -228,6 +235,7 @@ body {
 	vertical-align: top;
 }
 
+/* The class of the actual list text */
 .actualListText {
 	display: inline-block;
 	margin: auto;
@@ -237,10 +245,12 @@ body {
 	font-size: 1.15em;
 }
 
+/* The focus of the actual list text */
 .actualListText:focus {
 	outline: 0px solid transparent;
 }
 
+/* The new task list input */
 #listInput {
 	width: 500px;
 	min-height: 30px;
@@ -252,11 +262,13 @@ body {
 	outline: 0px solid transparent;
 }
 
+/* What enables the placeholed of the new task list input */
 #listInput:empty:before {
   content: attr(placeholder);
   color: #7e7e7e;
  }
 
+/* The tell me what to do button */
 #tellMeButton {
 	background-color: #F46036;
 	width: 500px;
@@ -271,44 +283,12 @@ body {
 	transition: all 0.25s;
 }
 
+/* The hover of the tell me what to do button */
 #tellMeButton:hover {
 	background-color: #db5630;
 }
 
-#tellMeOverlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 1000;
-	background-color: #fff;
-}
-
-#overlayContent {
-	position: relative;
-	width: 600px;
-	height: 400px;
-	margin: auto;
-	margin-top: 400px;
-	background-color: #000;
-	z-index: 1002;
-}
-
-#overlayDone {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 1001;
-}
-
-.myTestClass {
-	color: #000;
-	line-height: 16px;
-}
-
+/* The div of each delete task button */
 .deleteIconDiv {
 	margin-left: 470px;
 	margin-top: 5px;
@@ -316,14 +296,17 @@ body {
 	transition: all 10s;
 }
 
+/* The animation of the delete button */
 .oi[data-glyph]:before {
 	transition: all 0.25s;
 }
 
+/* The color change of the delete button */
 .deleteIconDiv:hover > .oi[data-glyph]:before {
 	color: #ea0001;
 }
 
+/* The "tasks" text */
 #toDoTasks {
 	font-family: "Roboto+Mono", monospace;
     font-size: 1.75em;
