@@ -84,7 +84,7 @@
         <ul id="noListSelected"><p>Please select a list to be displayed</p></ul>
       </ul>
       <div>
-        <p id="listInput" placeholder="+ Add a task" onkeyup="newTaskListener(event)" onfocusout="addTask()" hidden contenteditable="true"></p>
+        <p id="listInput" placeholder="+ Add a task" onkeyup="newTaskListener(event)" onfocusout="createTask()" hidden contenteditable="true"></p>
       </div>
     </div>
 
@@ -97,7 +97,7 @@
 <!-- Link to the current firebase version. Must be the first script-->
 <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 <!-- Link to the firestore -->
-<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase-firestore.js"></script>
 <script>
   // Initialize Firebase
   var config = {

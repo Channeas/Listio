@@ -127,6 +127,9 @@ function createList() {
 
 
 function loadList(loadListID) {
+	// Set the currentListIndex to 0. Important if this is not the first list to be loaded
+	currentListIndex = 0;
+	
 	// Empty the what is currently displayed in the list
 	listLocation.innerHTML = "";
 
@@ -153,38 +156,47 @@ function loadList(loadListID) {
 
 		// Append all the tasks to the listLocation
 		loadListID.tasks.forEach(function(element) {
-			// Create the li element
-			var crLiElement = document.createElement("ul");
-			crLiElement.setAttribute("class", "listContentLi");
-			crLiElement.setAttribute("id", "liItemNumber_" + currentListIndex);
-			// crLiElement.setAttribute("id",)
-
-			// Create the <p> element
-			var crPElement = document.createElement("p");
-			crPElement.setAttribute("class", "actualListText");
-			crPElement.setAttribute("contenteditable", "true");
-			crPElement.innerHTML = element;
-
-			// Add the delete icon div
-			var deleteIconDiv = document.createElement("div");
-			deleteIconDiv.setAttribute("class", "deleteIconDiv");
-			deleteIconDiv.setAttribute("id", currentListIndex);
-			deleteIconDiv.setAttribute("onclick", "deleteTask(this.id)");
-
-			// Add the delete icon
-			var deleteIcon = document.createElement("span");
-			deleteIcon.setAttribute("class", "oi");
-			deleteIcon.setAttribute("data-glyph", "trash");
-
-			// Append the above elements
-			listLocation.appendChild(crLiElement);
-			crLiElement.appendChild(deleteIconDiv);
-			deleteIconDiv.appendChild(deleteIcon);
-			crLiElement.appendChild(crPElement);
-			currentListIndex += 1;
+			// Call the function that adds the tasks
+			addTask(element);
 		})
 	}
 }
+
+// The function that adds tasks
+function addTask (element) {
+	// Create the li element
+	var crLiElement = document.createElement("ul");
+	crLiElement.setAttribute("class", "listContentLi");
+	crLiElement.setAttribute("id", "liItemNumber_" + currentListIndex);
+	// crLiElement.setAttribute("id",)
+
+	// Create the <p> element
+	var crPElement = document.createElement("p");
+	crPElement.setAttribute("class", "actualListText");
+	crPElement.setAttribute("contenteditable", "true");
+	crPElement.innerHTML = element;
+
+
+	// Add the delete icon div
+	var deleteIconDiv = document.createElement("div");
+	deleteIconDiv.setAttribute("class", "deleteIconDiv");
+	deleteIconDiv.setAttribute("id", currentListIndex);
+	deleteIconDiv.setAttribute("onclick", "deleteTask(this.id)");
+
+	// Add the delete icon
+	var deleteIcon = document.createElement("span");
+	deleteIcon.setAttribute("class", "oi");
+	deleteIcon.setAttribute("data-glyph", "trash");
+	
+	// Append the above elements
+	listLocation.appendChild(crLiElement);
+	crLiElement.appendChild(deleteIconDiv);
+	deleteIconDiv.appendChild(deleteIcon);
+	crLiElement.appendChild(crPElement);
+	currentListIndex += 1;
+}
+
+
 
 // Check if enter is pressed in the textarea for new tasks
 function newTaskListener(event) {
@@ -193,35 +205,22 @@ function newTaskListener(event) {
 
 	// Check if enter was pressed
 	if(code == 13) {
-		addTask();
+		createTask();
 	}
 }
 
 // Add a new task to the current list
-function addTask() {
+function createTask() {
 	// Get the value of the input
 	var newTask = newTaskInput.innerHTML;
 
+	// Check so that the new task input is not empty
+	if(newTask.length > 0) {
+	// Call the function that adds a new task
+	addTask(newTask);
+
 	// Empty the input of the input textarea
 	newTaskInput.innerHTML = "";
-
-	console.log(newTask.length);
-
-	if(newTask.length >= 2) {
-	// Create the li element
-	var crLiElement = document.createElement("ul");
-	crLiElement.setAttribute("class", "listContentLi");
-	// crLiElement.setAttribute("id",)
-
-	// Create the <p> element
-	var crPElement = document.createElement("p");
-	crPElement.setAttribute("class", "actualListText");
-	crPElement.setAttribute("contenteditable", "true");
-	crPElement.innerHTML = newTask;
-
-	// Append the above elements
-	listLocation.appendChild(crLiElement);
-	crLiElement.appendChild(crPElement);
 
 	// Push the new task to the current list objects array of tasks
 	currentList.tasks.push(newTask);
@@ -231,7 +230,7 @@ function addTask() {
 
 	// Update the firestore doc with the new task by sending in the currentList object
 	dbRef.doc(currentList.id).set(currentList);
-
+	
 	} else {
 		console.log("Can not add an empty task");
 	}
@@ -299,14 +298,24 @@ function overlayTaskDone() {
 } 
 
 function deleteTask(listIndex) {
+	// Get the list of all tasks
+	var todoList = document.getElementById("listTasks").getElementsByTagName("li");
+
+	// Get the task to delete
 	var deletedTask = document.getElementById("liItemNumber_" + listIndex);
+
+
+
 	console.log(listIndex);
+	// Remove the task from the currentList object
 	currentList.tasks.splice(listIndex, 1);
-	deletedTask.parentNode.removeChild(deletedTask);
 
 	// Update the local list object
 	window[listID] = currentList;
 
 	// Update the firestore doc with the new task by sending in the currentList object
 	dbRef.doc(currentList.id).set(currentList);
+
+	// Load the updated list
+	loadList(listID);
 }
