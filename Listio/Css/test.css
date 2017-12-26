@@ -250,6 +250,12 @@ body {
 	outline: 0px solid transparent;
 }
 
+#actualListText br {
+  display: none;
+}
+
+
+
 /* The new task list input */
 #listInput {
 	width: 500px;

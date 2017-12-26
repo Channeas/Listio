@@ -30,8 +30,8 @@ function retrieveLists() {
 				// Save the data in the var currentData
 				var currentData = doc.data();
 				
-				// The code below is for saving id's. Most likely unnessecary
-				//var currentDocID = doc.id;
+				// Saves the id of the current doc
+				var currentDocID = doc.id;
 				//currentData.id = currentDocID;
 
 				// Save each docs data in a global variable object
@@ -169,6 +169,7 @@ function addTask (element) {
 	var crPElement = document.createElement("p");
 	crPElement.setAttribute("class", "actualListText");
 	crPElement.setAttribute("contenteditable", "true");
+	//crPElement.setAttribute("")
 	crPElement.innerHTML = element;
 
 
@@ -202,6 +203,10 @@ function newTaskListener(event) {
 
 	// Check if enter was pressed
 	if(code == 13) {
+		// Prevent the line break from getting added
+		event.preventDefault();
+		
+		// Call the function to create a new task
 		createTask();
 	}
 }
@@ -213,7 +218,7 @@ function createTask() {
 
 	// Check so that the new task input is not empty
 	if(newTask.length > 0) {
-
+		console.log(newTask.length);
 	// Call the function that adds a new task
 	addTask(newTask);
 

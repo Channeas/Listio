@@ -78,7 +78,7 @@
                 <!-- The div for creating new tasks -->
                 <div>
                     <!-- The <p> tag with contenteditable for adding new tasks -->
-                    <p id="listInput" placeholder="+ Add a task" onkeyup="newTaskListener(event)" onfocusout="createTask()" hidden contenteditable="true"></p>
+                    <p id="listInput" placeholder="+ Add a task" onkeydown="newTaskListener(event)" onfocusout="createTask()" hidden contenteditable="true"></p>
                 </div>
             </div>
             <button id="tellMeButton" onclick="tellMeWhatToDo()" hidden> Tell me what to do </button>
