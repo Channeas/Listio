@@ -56,23 +56,14 @@ function taskDone() {
 		var stringList = JSON.stringify(list);
 		window.sessionStorage.setItem("list", stringList);
 	} else {
-		// Log that all tasks in the list are completed
-		console.log("All tasks in list complete");
-
-		// Displays that all tasks are completed
-		taskDisplay.innerHTML = "All tasks in list complete";
+		// Call that there are no more tasks left
+		noMoreTasks();
 
 		// Removes the task from undone tasks
 		list.tasks.splice(taskIndex, 1);
 
 		// Adds the task as completed
 		list.completed.push(currentTask);
-
-		// Adds the color of success to the background
-		document.getElementById("taskAction").className = "taskAction2";
-
-		// Changes the color of the text displayed to white
-		taskDisplayLocation.style.color = "#fff";
 
 		// Update the firestore doc with the new task by sending in the list object
 		dbRef.doc(list.id).set(list);
@@ -82,7 +73,42 @@ function taskDone() {
 		window.sessionStorage.setItem("list", stringList);
 	}
 } 
+// Known error
+//
+//	The completed tasks below counts all tasks ever completed in the list
+//	There is need for a new variable counting how many tasks were completed during this session
+//
+//
+//
+//
+//
+//
+//
+//
+// The function that is called when there are no more tasks left
+function noMoreTasks() {
+	if(taskIndex== 0) {
+		// Displays that all tasks are completed
+		taskDisplay.innerHTML = "All tasks in list complete";
 
+		// Adds the color of success to the background
+		document.getElementById("taskAction").className = "taskAction2";
+	} else {
+		// Get the total amount of tasks
+		var totalTasks = list.tasks.length + list.completed.length;
+
+		// Adds the class that changes the color of the taskAction div to red
+		document.getElementById("taskAction").className = "taskAction3";
+
+		// Display the amount of tasks completed vs the amount of total tasks
+		taskDisplay.innerHTML = list.completed.length + " tasks of " + totalTasks + " completed";
+	}
+
+	// Changes the color of the text displayed to white
+	taskDisplayLocation.style.color = "#fff";
+}
+
+// The function that resets the display
 function resetDisplay() {
 	// Changes back the color of the task displayed to black
 	taskDisplayLocation.style.color = "#000";
@@ -99,17 +125,25 @@ function resetDisplay() {
 
 // The function that skips a task
 function skipTask() {
-	// Adds the class that changes the color of the taskAction div to red
-	document.getElementById("taskAction").className = "taskAction3";
-
-	// Changes the color of the task displayed to white
-	taskDisplayLocation.style.color = "#fff";
-
 	// Increments one to the taskIndex
 	taskIndex += 1;
 
-	// Sets a timeout before loading the new task
-	window.setTimeout(resetDisplay, 2000);
+
+	// Checks if there are more tasks
+	if(taskIndex+1 < list.tasks.length) {
+		// Sets a timeout before loading the new task
+		window.setTimeout(resetDisplay, 2000);
+
+		// Adds the class that changes the color of the taskAction div to red
+		document.getElementById("taskAction").className = "taskAction3";
+
+		// Changes the color of the task displayed to white
+		taskDisplayLocation.style.color = "#fff";
+	} else {
+		// Call that there are no more tasks left
+		noMoreTasks();
+	}
+
 }
 
 // The function to quit the page that displays tasks

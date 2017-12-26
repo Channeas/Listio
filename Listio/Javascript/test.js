@@ -169,7 +169,8 @@ function addTask (element) {
 	var crPElement = document.createElement("p");
 	crPElement.setAttribute("class", "actualListText");
 	crPElement.setAttribute("contenteditable", "true");
-	//crPElement.setAttribute("")
+	crPElement.setAttribute("onkeydown", "taskKeyDown(event, this)");
+	crPElement.setAttribute("onfocusout", "changeTask(this)");
 	crPElement.innerHTML = element;
 
 
@@ -228,11 +229,8 @@ function createTask() {
 	// Push the new task to the current list objects array of tasks
 	currentList.tasks.push(newTask);
 
-	// Update the local list object
-	window[listID] = currentList;
-
-	// Update the firestore doc with the new task by sending in the currentList object
-	dbRef.doc(currentList.id).set(currentList);
+	// Call the function that updates the local object and the firebase doc.
+	updateList();
 	
 	} else { // Else log that the user can not create an empty task
 		console.log("Can not add an empty task");
@@ -241,7 +239,7 @@ function createTask() {
 
 // Check if enter is pressed in the title input field
 function changeTitleListener(event) {
-	// Get the keycode
+	// Get the keyCode
 	var code = event.keyCode;
 
 	// Check if enter was pressed
@@ -259,11 +257,8 @@ function changeTitle() {
 	// Save the value of the title to the currentList object
 	currentList.title = newTitle;
 
-	// Update the local list object
-	window[listID] = currentList;
-
-	// Update the firestore doc with the new title by sending in the currentList object
-	dbRef.doc(currentList.id).set(currentList);
+	// Call the function that updates the local object and the firebase doc.
+	updateList();
 
 	// Update the list of lists to display the right title
 	document.getElementById(currentList.id + "_list").innerHTML = newTitle;
@@ -289,6 +284,7 @@ function tellMeWhatToDo() {
 	window.location.href = "test2.html";
 }
 
+// The function that deletes tasks
 function deleteTask(listIndex) {
 	// Get the list of all tasks
 	var todoList = document.getElementById("listTasks").getElementsByTagName("li");
@@ -299,12 +295,46 @@ function deleteTask(listIndex) {
 	// Remove the task from the currentList object
 	currentList.tasks.splice(listIndex, 1);
 
-	// Update the local list object
-	window[listID] = currentList;
-
-	// Update the firestore doc with the new task by sending in the currentList object
-	dbRef.doc(currentList.id).set(currentList);
+	// Call the function that updates the local object and the firebase doc.
+	updateList();
 
 	// Load the updated list
 	loadList(listID);
+}
+
+
+// TODO: make the list index id be sent with the taskKeyDown
+// The function that is called on the keydown of every task
+function taskKeyDown(event, sender) {
+	// Get the keyCode
+	var code = event.keyCode;
+	// Check if enter was pressed 
+	if(code == 13) {
+		// Call the function that changes tasks
+		changeTask(sender);
+
+		// Prevent the line break from getting added
+		event.preventDefault();
+	}
+}
+
+// The function that changes tasks
+function changeTask(sender) {
+	// Get the index of the selected task
+	index = sender.previousSibling.id;
+
+	// Change the task in the currentList object
+	currentList.tasks[index] = sender.innerHTML;
+
+	// Call the function that updates the local object and the firebase doc.
+	updateList();
+}
+
+// The function that updates the list
+function updateList() {
+	// Update the local list object
+	window[listID] = currentList;
+
+	// Update the firestore doc with the new title by sending in the currentList object
+	dbRef.doc(currentList.id).set(currentList);
 }
