@@ -1,6 +1,7 @@
 var list, currentTask;
 var taskIndex = 0;
 var taskDisplayLocation = document.getElementById("taskDisplay");
+var newlyCompleted = 0;
 
 // The onload that get's the list from the localStorage
 window.onload = getList();
@@ -28,6 +29,9 @@ function getList() {
 
 // The function that marks a task as done
 function taskDone() {
+	// Increment the newlyCompleted variable
+	newlyCompleted += 1;
+
 	// Checks if there are more tasks
 	if(taskIndex+1 < list.tasks.length) {
 		// Logs that a task was completed and logs what task it was
@@ -56,9 +60,6 @@ function taskDone() {
 		var stringList = JSON.stringify(list);
 		window.sessionStorage.setItem("list", stringList);
 	} else {
-		// Call that there are no more tasks left
-		noMoreTasks();
-
 		// Removes the task from undone tasks
 		list.tasks.splice(taskIndex, 1);
 
@@ -71,20 +72,12 @@ function taskDone() {
 		// Update the localstorage
 		var stringList = JSON.stringify(list);
 		window.sessionStorage.setItem("list", stringList);
+
+		// Call that there are no more tasks left
+		noMoreTasks();
 	}
 } 
-// Known error
-//
-//	The completed tasks below counts all tasks ever completed in the list
-//	There is need for a new variable counting how many tasks were completed during this session
-//
-//
-//
-//
-//
-//
-//
-//
+
 // The function that is called when there are no more tasks left
 function noMoreTasks() {
 	if(taskIndex== 0) {
@@ -95,13 +88,13 @@ function noMoreTasks() {
 		document.getElementById("taskAction").className = "taskAction2";
 	} else {
 		// Get the total amount of tasks
-		var totalTasks = list.tasks.length + list.completed.length;
+		var totalTasks = list.tasks.length + newlyCompleted;
 
 		// Adds the class that changes the color of the taskAction div to red
 		document.getElementById("taskAction").className = "taskAction3";
 
 		// Display the amount of tasks completed vs the amount of total tasks
-		taskDisplay.innerHTML = list.completed.length + " tasks of " + totalTasks + " completed";
+		taskDisplay.innerHTML = newlyCompleted + " tasks of " + totalTasks + " completed";
 	}
 
 	// Changes the color of the text displayed to white
@@ -130,7 +123,7 @@ function skipTask() {
 
 
 	// Checks if there are more tasks
-	if(taskIndex+1 < list.tasks.length) {
+	if(taskIndex < list.tasks.length) {
 		// Sets a timeout before loading the new task
 		window.setTimeout(resetDisplay, 2000);
 
