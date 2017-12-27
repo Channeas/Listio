@@ -1,5 +1,6 @@
 var menuOut = true;
 var listLocation = document.getElementById("listTasks");
+var completedLocation = document.getElementById("completedListTasks");
 var newTaskInput = document.getElementById("listInput");
 var titleInput = document.getElementById("title");
 var tellMeButton = document.getElementById("tellMeButton");
@@ -123,8 +124,11 @@ function loadList(loadListID) {
 	// Set the currentListIndex to 0. Important if this is not the first list to be loaded
 	currentListIndex = 0;
 	
-	// Empty the what is currently displayed in the list
+	// Empty what is currently displayed in the list
 	listLocation.innerHTML = "";
+
+	// Empty what is currently displayed in the completed tasks
+	completedLocation.innerHTML = "";
 
 	console.log(loadListID);
 	// Get the current lists task and title from the firestore doc
@@ -153,12 +157,21 @@ function loadList(loadListID) {
 		loadListID.tasks.forEach(function(element) {
 			// Call the function that adds the tasks
 			addTask(element);
+		});
+
+		// Reverse the completed tasks to display the most recently completed task on top
+		var reversedCompleted = loadListID.completed.reverse();
+
+		// Append all the completed tasks
+		reversedCompleted.forEach(function(element) {
+			// Call the function that appends the completed tasks
+			addCompletedTasks(element);
 		})
 	}
 }
 
 // The function that adds tasks
-function addTask (element) {
+function addTask(element) {
 	// Create the li element
 	var crLiElement = document.createElement("ul");
 	crLiElement.setAttribute("class", "listContentLi");
@@ -194,6 +207,23 @@ function addTask (element) {
 	// Add 1 to the currentListIndex, which is for ordering the different list elements
 	currentListIndex += 1;
 }
+
+// The function that appends all the completed tasks
+function addCompletedTasks(element) {
+	// Create the li element
+	var crLiElement = document.createElement("ul");
+	crLiElement.setAttribute("class", "listContentLi");
+
+	// Create the <p> element
+	var crPElement = document.createElement("p");
+	crPElement.setAttribute("class", "actualListText");
+	crPElement.innerHTML = element;
+
+	// Append the above elements
+	completedLocation.appendChild(crLiElement);
+	crLiElement.appendChild(crPElement);
+}
+
 
 
 
@@ -272,6 +302,15 @@ function unHide() {
 
 	// Remove the hidden attribute from the tell me what to do button
 	tellMeButton.removeAttribute("hidden");
+
+	// Remove the hidden attribute from the todoTasks
+	document.getElementById("toDoTasks").removeAttribute("hidden");
+
+	// Remove the hidden attribute from the completedTasks
+	document.getElementById("completedTasks").removeAttribute("hidden");
+
+	// Remove the hidden attribute from the button that deletes the current list
+	document.getElementById("deleteList").removeAttribute("hidden");
 }
 
 // The function that redirects to the page that shows lists

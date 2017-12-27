@@ -50,12 +50,19 @@
             <!-- The div where the list title is displayed -->
             <div id="top">
                 <!-- The title display -->
-                <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()" hidden placeholder="Write your title here">
+                <input id="title" spellcheck="false" onkeyup="changeTitleListener(event)" onfocusout="changeTitle()" hidden placeholder="Write your title here"> 
+
+                <!-- The button for deleting the current list -->
+                <div id="deleteList" hidden>
+                    <span class="oi" data-glyph="trash">
+                        
+                    </span>
+                </div>
             </div>
             <!-- The actual list content -->
             <div id="listContent" spellcheck="false">
                 <!-- The header that displays the task -->
-                <p id="toDoTasks"> Tasks </p>
+                <p id="toDoTasks" hidden> Tasks </p>
                 <!-- The ul where the list is displayed -->
                 <ul id="listTasks">
                     <!--
@@ -80,6 +87,13 @@
                     <!-- The <p> tag with contenteditable for adding new tasks -->
                     <p id="listInput" placeholder="+ Add a task" onkeydown="newTaskListener(event)" onfocusout="createTask()" hidden contenteditable="true"></p>
                 </div>
+            </div>
+            <div id="completed"> 
+                <p id="completedTasks" hidden> Completed </p>
+                <ul id="completedListTasks">
+                <!-- All completed tasks are placed here -->
+                </ul>
+
             </div>
             <button id="tellMeButton" onclick="tellMeWhatToDo()" hidden> Tell me what to do </button>
         </div>

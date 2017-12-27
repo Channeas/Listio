@@ -194,7 +194,7 @@ body {
 	font-family: 'Roboto+Mono', monospace;
 	font-size: 2.5em;
 	height: 58px;
-	width: 580px;
+	width: 500px;
 	vertical-align: middle;
 	margin: 0px;
 	margin-left: 15px;
@@ -210,6 +210,7 @@ body {
 /* The actual list content */
 #listContent {
 	padding-bottom: 15px;
+	border-bottom: 1px solid #d3d3d3;
 }
 
 /* The class of every task list item */
@@ -254,7 +255,16 @@ body {
   display: none;
 }
 
-
+/* The message that is displayed when no list is selected */
+#noListSelected {
+	font-size: 1.3em;
+	font-family: "Roboto+Mono", monospace;
+	margin: auto;
+	width: 600px;
+	margin-left: -88px;
+	/*position: fixed; */
+	text-align: center;
+}
 
 /* The new task list input */
 #listInput {
@@ -298,7 +308,7 @@ body {
 .deleteIconDiv {
 	margin-left: 470px;
 	margin-top: 5px;
-	position: fixed;
+	position: absolute;
 	transition: all 10s;
 }
 
@@ -318,4 +328,20 @@ body {
     font-size: 1.75em;
     color: #7e7e7e;
     margin-left: 50px;
+}
+
+/* The div where completed tasks are displayed */
+#completedTasks {
+	font-family: "Roboto+Mono", monospace;
+    font-size: 1.75em;
+    color: #7e7e7e;
+    margin-left: 50px;
+}
+
+/* The button for deleting the current list */
+#deleteList {
+	position: absolute;
+    top: 20px;
+    left: 520px;
+    font-size: 2em;
 }
