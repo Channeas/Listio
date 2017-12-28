@@ -142,5 +142,5 @@ function skipTask() {
 // The function to quit the page that displays tasks
 function quit() {
 	// Redirect to the index page
-	window.location.href = "test.html";
+	window.location.href = "index.html";
 }
