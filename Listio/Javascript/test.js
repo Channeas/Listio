@@ -89,6 +89,7 @@ function createList() {
 	// Empty the what is currently displayed in the list and empty the title
 	listLocation.innerHTML = "";
 	titleInput.value = "";
+	completedLocation.innerHTML = "";
 
 	// Fix what is hidden on the page
 	unHide()
@@ -313,6 +314,30 @@ function unHide() {
 	document.getElementById("deleteList").removeAttribute("hidden");
 }
 
+// Hides all the elements that can be unhidden in the function above
+function hide() {
+	// Add the hidden tag attribute from the title and task input
+	titleInput.setAttribute("hidden", "true");
+	newTaskInput.setAttribute("hidden", "true");
+
+	// Add the hidden attribute from the tell me what to do button
+	tellMeButton.setAttribute("hidden", "true");
+
+	// Add the hidden attribute from the todoTasks
+	document.getElementById("toDoTasks").setAttribute("hidden", "true");
+
+	// Add the hidden attribute from the completedTasks
+	document.getElementById("completedTasks").setAttribute("hidden", "true");
+
+	// Add the hidden attribute from the button that deletes the current list
+	document.getElementById("deleteList").setAttribute("hidden", "true");
+
+	// Empty the what is currently displayed in the list and empty the title
+	listLocation.innerHTML = "";
+	titleInput.value = "";
+	completedLocation.innerHTML = "";
+}
+
 // The function that redirects to the page that shows lists
 function tellMeWhatToDo() {
 	// Save the current list in localstorage
@@ -376,4 +401,21 @@ function updateList() {
 
 	// Update the firestore doc with the new title by sending in the currentList object
 	dbRef.doc(currentList.id).set(currentList);
+}
+
+// The function that deletes lists
+function deleteList() {
+	// Hide basically everything
+	hide();
+
+	// Delete the firebase doc of the current list
+	dbRef.doc(currentList.id).delete().then(function() {
+		console.log("List deleted");
+	}).catch(function(error) {
+		console.log("Error deleting list: " + error);
+	})
+
+	// Remove the list button from the menu
+	var deletedList = document.getElementById(currentList.id + "_list");
+	deletedList.parentElement.removeChild(deletedList);
 }
